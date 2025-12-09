@@ -1,10 +1,15 @@
-TODO :
-    - NATHAN :
-        - [ ] Algo complex
-        - [ ] Algo adaptative
-    - RÉMI :
-        - [ ] Algo simple
-        - [ ] Algo medium
-        - [ ] parsing
-    - [ ] bench mode
-    - [ ] checker bonus
+## TODO
+
+### Nathan
+- [ ] Algorithme complexe
+- [ ] Algorithme adaptatif
+
+### Rémi
+- [ ] Algorithme simple
+- [ ] Algorithme moyen
+- [ ] Parsing
+
+### Global
+- [ ] Mode benchmark
+- [ ] Checker (bonus)
+
