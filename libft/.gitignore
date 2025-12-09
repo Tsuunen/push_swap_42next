@@ -1,0 +1,5 @@
+libft.a
+*.o
+a.out
+*.d
+.build
