@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils_reverse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:34:09 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/02 14:28:20 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/09 09:51:45 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,4 @@ int	count_to_place_reverse(t_stack s, int value, int *direction)
 		tmp++;
 	}
 	return (min);
-}
-
-int	find_best_reverse(t_stack from, t_stack to, t_best *best)
-{
-	size_t	i;
-	t_best	tmp;
-
-	i = 1;
-	best->index = 0;
-	best->steps_to_top = count_to_top(from, 0, &best->dir_top);
-	best->steps_to_place = count_to_place_reverse(to, from.stack[0],
-			&best->dir_place);
-	compute_best_nbr_steps(best);
-	while (i < from.size)
-	{
-		tmp.steps_to_top = count_to_top(from, i, &tmp.dir_top);
-		tmp.steps_to_place = count_to_place_reverse(to, from.stack[i],
-				&tmp.dir_place);
-		compute_best_nbr_steps(&tmp);
-		if (tmp.nbr_steps < best->nbr_steps)
-			replace_best(best, tmp, i);
-		i++;
-	}
-	return (0);
 }
