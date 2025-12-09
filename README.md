@@ -6,7 +6,7 @@
 - [ ] Disorder function
 
 ### Rémi
-- [ ] Algorithme simple
+- [x] Algorithme simple
 - [ ] Algorithme moyen
 - [ ] Parsing
 
