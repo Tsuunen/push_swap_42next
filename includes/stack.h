@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 12:41:33 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:30:40 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int		check_sort(t_stack s);
 int		max(int a, int b);
 int		min(int a, int b);
 int		is_in_stack(t_stack s, int value);
+float	compute_disorder(t_stack a);
 
 #endif
