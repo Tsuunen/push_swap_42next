@@ -3,6 +3,7 @@
 ### Nathan
 - [ ] Algorithme complexe
 - [ ] Algorithme adaptatif
+- [ ] Disorder function
 
 ### Rémi
 - [ ] Algorithme simple

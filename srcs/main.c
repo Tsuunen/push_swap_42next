@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 09:42:52 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:27:58 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	init_stacks(t_stack *a, t_stack *b, int argc, char **argv)
 	char	*end;
 
 	i = 0;
-	a->size = argc - 1;
+	a->size = 0;
 	b->size = 0;
 	a->name = 'a';
 	b->name = 'b';
@@ -28,6 +28,7 @@ static int	init_stacks(t_stack *a, t_stack *b, int argc, char **argv)
 		a->stack[i] = ft_strtoi(argv[i + 1], &end);
 		if (*end || is_in_stack(*a, a->stack[i]))
 			return (1);
+		a->size++;
 		i++;
 	}
 	return (0);
@@ -69,7 +70,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (2);
 	}
-	sort(&a, &b);
+	simple_sort(&a, &b);
 	free(a.stack);
 	free(b.stack);
 	return (0);

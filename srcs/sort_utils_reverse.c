@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:34:09 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 09:51:45 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/09 10:24:40 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	handle_max(t_stack s, int *direction)
 		return (1);
 	}
 	if (count_to_top(s, max, direction)
-		< count_to_top(s, find_max_reverse(s), direction))
+		< count_to_top(s, find_max(s), direction))
 		tmp = count_to_top(s, max, direction);
 	else
-		tmp = count_to_top(s, find_max_reverse(s), direction);
+		tmp = count_to_top(s, find_max(s), direction);
 	if (*direction == 0)
 		return (tmp + 1);
 	return (tmp - 1);
@@ -43,9 +43,9 @@ int	manage_minmax_reverse(t_stack s, int value, int *direction)
 	if (value < s.stack[min])
 	{
 		if (count_to_top(s, min, direction)
-			< count_to_top(s, find_min_reverse(s), direction))
+			< count_to_top(s, find_min(s), direction))
 			return (count_to_top(s, min, direction));
-		return (count_to_top(s, find_min_reverse(s), direction));
+		return (count_to_top(s, find_min(s), direction));
 	}
 	if (value > s.stack[max])
 		return (handle_max(s, direction));
