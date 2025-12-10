@@ -17,7 +17,8 @@ SRCS = main.c\
 	   check_sort.c\
 	   comp.c\
 	   simple_sort.c\
-	   disorder.c
+	   disorder.c\
+	   complex_sort.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
