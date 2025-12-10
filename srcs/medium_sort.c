@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:48:13 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/10 14:02:01 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:19:58 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,14 @@ void	update_bucket_indexes_push(t_bucket *bucket, int bucket_index,
 
 	i = 0;
 	bucket->sizes[bucket_index]++;
-	ft_printf("Bucket_indexes : ");
 	while (i < bucket->nbr)
 	{
 		if (i != bucket_index && bucket->indexes[i] != -1)
 			bucket->indexes[i] = (bucket->indexes[i] + 1) % b->size;
-		ft_printf("%d ", bucket->indexes[i]);
 		i++;
 	}
 	if (bucket->indexes[bucket_index] == -1)
 		bucket->indexes[bucket_index] = 0;
-	ft_printf("\n");
 }
 
 void	medium_sort(t_stack *a, t_stack *b)
@@ -107,7 +104,7 @@ void	medium_sort(t_stack *a, t_stack *b)
 
 	if (init_bucket(&bucket, a))
 		return ;
-	while (a->size)
+	while (a->size && !check_sort(*a))
 	{
 		bucket_index = (a->stack[0] - bucket.min) * bucket.nbr / (bucket.max - bucket.min + 1);
 		if (bucket_index >= bucket.nbr)
@@ -121,6 +118,16 @@ void	medium_sort(t_stack *a, t_stack *b)
 		push(a, b);
 		update_bucket_indexes_push(&bucket, bucket_index, b);
 	}
+	while (b->size)
+	{
+		tmp = count_to_place_reverse(*a, b->stack[0], &dir);
+		while (tmp--)
+			universal_rotate(*a, dir);
+		push(b, a);
+	}
+	tmp = count_to_top(*a, find_min(*a), &dir);
+	while (tmp--)
+		universal_rotate(*a, dir);
 	free(bucket.indexes);
 	free(bucket.sizes);
 }
