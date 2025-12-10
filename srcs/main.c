@@ -6,32 +6,19 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/10 10:48:14 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:31:43 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stack.h"
 
-static int	init_stacks(t_stack *a, t_stack *b, int argc, char **argv)
+static void	init_stacks(t_stack *a, t_stack *b)
 {
-	int		i;
-	char	*end;
-
-	i = 0;
 	a->size = 0;
 	b->size = 0;
 	a->name = 'a';
 	b->name = 'b';
-	while (i < argc - 1)
-	{
-		a->stack[i] = ft_strtoi(argv[i + 1], &end);
-		if (*end || is_in_stack(*a, a->stack[i]))
-			return (1);
-		a->size++;
-		i++;
-	}
-	return (0);
 }
 
 void	print_stack(t_stack s)
@@ -53,6 +40,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
+	char	args;
 
 	a.stack = ft_calloc(argc - 1, sizeof(int));
 	if (!a.stack)
@@ -63,13 +51,9 @@ int	main(int argc, char **argv)
 		free(a.stack);
 		return (1);
 	}
-	if (init_stacks(&a, &b, argc, argv))
-	{
-		free(a.stack);
-		free(b.stack);
-		write(2, "Error\n", 6);
-		return (2);
-	}
+	init_stacks(&a, &b);
+	arg_parser(argc, argv, &a, &args);
+	ft_printf("%d\n", args);
 	medium_sort(&a, &b);
 	free(a.stack);
 	free(b.stack);
