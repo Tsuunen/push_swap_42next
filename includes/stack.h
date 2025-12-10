@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 12:41:33 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:40:37 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		count_to_top(t_stack s, int index, int *direction);
 int		count_to_place(t_stack s, int value, int *direction);
 int		count_to_place_reverse(t_stack s, int value, int *direction);
 void	simple_sort(t_stack *a, t_stack *b);
+void	medium_sort(t_stack *a, t_stack *b);
 void	print_stack(t_stack s);
 int		find_max(t_stack s);
 int		find_min(t_stack s);

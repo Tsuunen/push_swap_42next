@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 10:27:58 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:40:26 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (2);
 	}
-	simple_sort(&a, &b);
+	medium_sort(&a, &b);
 	free(a.stack);
 	free(b.stack);
 	return (0);
