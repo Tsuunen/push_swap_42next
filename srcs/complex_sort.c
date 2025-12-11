@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/10 12:55:51 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/10 17:23:24 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static int	has_bitdiff(t_stack *s, int bit)
 	return (0);
 }
 
-static void push_skip(t_stack *src, t_stack *dest, int bit)
+static void push_skip(t_stack *src, t_stack *dest, int bit, int state)
 {
-	if (!(src->stack[0] & (1 << bit)))
+	if ((src->stack[0] & (1 << bit)) && state)
+		push(src, dest);
+	else if (!(src->stack[0] & (1 << bit)) && !state)
 		push(src, dest);
 	else
 		universal_rotate(*src, 0);
@@ -40,7 +42,7 @@ void	radix_sort(t_stack *a, t_stack  *b)
 	int	bottom;
 
 	bit = 0;
-	while (!check_sort(*a) && bit < 16)
+	while (!check_sort(*a) && bit < 32)
 	{
 		if (!has_bitdiff(a, bit))
 		{
@@ -49,10 +51,17 @@ void	radix_sort(t_stack *a, t_stack  *b)
 		}
 		bottom = a->stack[a->size - 1];
 		while (a->stack[0] != bottom)
-			push_skip(a, b, bit);
-		push_skip(a, b, bit);
-		while (b->size)
-			push(b, a);
+			push_skip(a, b, bit, 0);
+		push_skip(a, b, bit, 0);
+		bottom = b->stack[b->size - 1];
+		if (!check_sort_reverse(*b))
+		{
+			while (b->stack[0] != bottom)
+				push_skip(b, a, bit + 1, 1);
+			push_skip(b, a, bit + 1, 1);
+		}
 		bit++;
 	}
+	while (b->size)
+		push(b, a);
 }
