@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:48:13 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/10 16:19:58 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:32:07 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,48 @@ void	update_bucket_indexes_rotation(t_bucket *bucket, t_stack *b, int dir,
 }
 
 void	update_bucket_indexes_push(t_bucket *bucket, int bucket_index,
-								t_stack *b)
+								t_stack *b, int value_pushed)
 {
 	int	i;
+	int	old_max_pos;
 
 	i = 0;
-	bucket->sizes[bucket_index]++;
 	while (i < bucket->nbr)
 	{
 		if (i != bucket_index && bucket->indexes[i] != -1)
 			bucket->indexes[i] = (bucket->indexes[i] + 1) % b->size;
 		i++;
 	}
-	if (bucket->indexes[bucket_index] == -1)
+	bucket->sizes[bucket_index]++;
+	if (bucket->sizes[bucket_index] == 1)
 		bucket->indexes[bucket_index] = 0;
+	else
+	{
+		old_max_pos = (bucket->indexes[bucket_index] + 1) % b->size;
+
+		if (value_pushed > b->stack[old_max_pos])
+			bucket->indexes[bucket_index] = 0;
+		else
+			bucket->indexes[bucket_index] = old_max_pos;
+	}
+}
+
+int	find_insert_position_in_bucket(t_stack *b, int bucket_start, int bucket_size, int value)
+{
+	int	pos;
+	int	i;
+
+	if (bucket_size == 0)
+		return (bucket_start);
+	i = 0;
+	while (i < bucket_size)
+	{
+		pos = (bucket_start + i) % b->size;
+		if (b->stack[pos] < value)
+			return (pos);
+		i++;
+	}
+	return ((bucket_start + bucket_size) % b->size);
 }
 
 void	medium_sort(t_stack *a, t_stack *b)
@@ -109,25 +137,31 @@ void	medium_sort(t_stack *a, t_stack *b)
 		bucket_index = (a->stack[0] - bucket.min) * bucket.nbr / (bucket.max - bucket.min + 1);
 		if (bucket_index >= bucket.nbr)
 			bucket_index = bucket.nbr - 1;
-		tmp = count_to_top(*b, bucket.indexes[bucket_index], &dir);
-		i = 0;
-		while (i++ < tmp)
-			universal_rotate(*b, dir);
-		if (tmp > 0)
-			update_bucket_indexes_rotation(&bucket, b, dir, tmp);
+		if (bucket.sizes[bucket_index] != 0)
+		{
+			tmp = find_insert_position_in_bucket(b, bucket.indexes[bucket_index], 
+										bucket.sizes[bucket_index], a->stack[0]);
+			tmp = count_to_top(*b, tmp, &dir);
+			i = 0;
+			while (i++ < tmp)
+				universal_rotate(*b, dir);
+			if (tmp > 0)
+				update_bucket_indexes_rotation(&bucket, b, dir, tmp);
+		}
+		tmp = a->stack[0];
 		push(a, b);
-		update_bucket_indexes_push(&bucket, bucket_index, b);
+		update_bucket_indexes_push(&bucket, bucket_index, b, tmp);
 	}
-	while (b->size)
-	{
-		tmp = count_to_place_reverse(*a, b->stack[0], &dir);
-		while (tmp--)
-			universal_rotate(*a, dir);
-		push(b, a);
-	}
-	tmp = count_to_top(*a, find_min(*a), &dir);
-	while (tmp--)
-		universal_rotate(*a, dir);
+	// while (b->size)
+	// {
+	// 	tmp = count_to_place_reverse(*a, b->stack[0], &dir);
+	// 	while (tmp--)
+	// 		universal_rotate(*a, dir);
+	// 	push(b, a);
+	// }
+	// tmp = count_to_top(*a, find_min(*a), &dir);
+	// while (tmp--)
+	// 	universal_rotate(*a, dir);
 	free(bucket.indexes);
 	free(bucket.sizes);
 }
