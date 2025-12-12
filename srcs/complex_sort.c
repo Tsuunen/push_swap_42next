@@ -6,11 +6,12 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/10 17:23:24 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/12 14:44:22 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include <limits.h>
 
 static int	has_bitdiff(t_stack *s, int bit)
 {
@@ -23,6 +24,75 @@ static int	has_bitdiff(t_stack *s, int bit)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+/*static int	normalize(t_stack *s)
+{
+	int		*new;
+	char	*used;
+	size_t	i;
+	size_t	j;
+	size_t	count;
+
+	if (!s || s->size == 0)
+		return (0);
+	new = ft_calloc(s->size, sizeof(int));
+	used = ft_calloc(s->size, sizeof(char));
+	if (!new || !used)
+	{
+		free(new);
+		free(used);
+		return (1);
+	}
+	count = 0;
+	while (count < s->size)
+	{
+		j = (size_t) - 1;
+		for (i = 0; i < s->size; i++)
+		{
+			if (used[i])
+				continue;
+			if (j == (size_t) - 1 || s->stack[i] < s->stack[j])
+				j = i;
+		}
+		used[j] = 1;
+		new[j] = count;
+		count++;
+	}
+	free(used);
+	free(s->stack);
+	s->stack = new;
+	return (0);
+}*/
+
+static int	normalize(t_stack *s)
+{
+	int		*new;
+	size_t	i;
+	size_t	j;
+	int		min;
+
+	new = ft_calloc(s->size, sizeof(int));
+	if (!new)
+		return (1);
+	i = 0;
+	while (i < s->size)
+	{
+		j = 0;
+		min = 0;
+		while (j < s->size)
+		{
+			if (s->stack[j] < min)
+				min = j;
+			j++;
+		}
+		new[j] = i;
+		s->stack[j] = INT_MAX;
+		i++;
+	}
+	free(s->stack);
+	s->stack = new;
 	return (0);
 }
 
@@ -39,26 +109,31 @@ static void push_skip(t_stack *src, t_stack *dest, int bit, int state)
 void	radix_sort(t_stack *a, t_stack  *b)
 {
 	int	bit;
-	int	bottom;
+	int	i;
+	int	size;
 
 	bit = 0;
-	while (!check_sort(*a) && bit < 32)
+	if (normalize(a))
+		return ;
+	for (size_t i = 0; i < a->size; i++)
+		ft_printf("%d, ", a->stack[i]);
+	while (!check_sort(*a) && bit <= 32)
 	{
 		if (!has_bitdiff(a, bit))
 		{
 			bit++;
 			continue;
 		}
-		bottom = a->stack[a->size - 1];
-		while (a->stack[0] != bottom)
+		i = 0;
+		size = a->size;
+		while (++i <= size)
 			push_skip(a, b, bit, 0);
-		push_skip(a, b, bit, 0);
-		bottom = b->stack[b->size - 1];
 		if (!check_sort_reverse(*b))
 		{
-			while (b->stack[0] != bottom)
+			i = 0;
+			size = b->size;
+			while (++i <= size)
 				push_skip(b, a, bit + 1, 1);
-			push_skip(b, a, bit + 1, 1);
 		}
 		bit++;
 	}

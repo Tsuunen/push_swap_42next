@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:23:46 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/10 10:38:01 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:09:42 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 float	compute_disorder(t_stack a)
 {
-	int	mistakes;
-	int	total_pairs;
+	int		mistakes;
+	int		total_pairs;
 	size_t	i;
 	size_t	j;
 

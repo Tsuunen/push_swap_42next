@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/11 16:15:28 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/12 09:56:39 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STACK_H
 
 # include <stddef.h>
+# include "libft.h"
 
 typedef struct s_stack
 {
