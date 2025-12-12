@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/10 16:29:03 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:15:28 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		min(int a, int b);
 int		is_in_stack(t_stack s, int value);
 float	compute_disorder(t_stack a);
 void	radix_sort(t_stack*, t_stack*);
+int		check_sort_reverse(t_stack s);
 int		arg_parser(int argc, char **argv, t_stack *a, char *args);
 
 #endif
