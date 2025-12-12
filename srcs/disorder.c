@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:23:46 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/10 10:38:01 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:40:11 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ float	compute_disorder(t_stack a)
 		}
 		i++;
 	}
-	return (mistakes / total_pairs);
+	return ((float) mistakes / total_pairs);
 }
