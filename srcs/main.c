@@ -6,12 +6,13 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/12 09:49:48 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/12 17:14:30 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stack.h"
+#include <stdio.h>
 
 static void	init_stacks(t_stack *a, t_stack *b)
 {
@@ -53,8 +54,8 @@ int	main(int argc, char **argv)
 	}
 	init_stacks(&a, &b);
 	arg_parser(argc, argv, &a, &args);
-	ft_printf("%d\n", args);
-	radix_sort(&a, &b);
+	printf("%f\n", compute_disorder(a));
+	medium_sort(&a, &b);
 	free(a.stack);
 	free(b.stack);
 	return (0);

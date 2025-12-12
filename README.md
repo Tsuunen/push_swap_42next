@@ -7,8 +7,8 @@
 
 ### Rémi
 - [x] Algorithme simple
-- [ ] Algorithme moyen
-- [ ] Parsing
+- [x] Algorithme moyen
+- [x] Parsing
 
 ### Global
 - [ ] Mode benchmark
