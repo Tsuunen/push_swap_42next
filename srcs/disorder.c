@@ -6,13 +6,13 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:23:46 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/12 17:14:03 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:18:58 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-float	compute_disorder(t_stack a)
+float	compute_disorder(t_stack *s)
 {
 	int		mistakes;
 	int		total_pairs;
@@ -22,13 +22,13 @@ float	compute_disorder(t_stack a)
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;
-	while (i < a.size)
+	while (i < s->size)
 	{
 		j = i + 1;
-		while (j < a.size)
+		while (j < s->size)
 		{
 			total_pairs++;
-			if (a.stack[i] > a.stack[j])
+			if (s->stack[i] > s->stack[j])
 				mistakes++;
 			j++;
 		}

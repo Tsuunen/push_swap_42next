@@ -12,16 +12,16 @@
 
 #include "stack.h"
 
-int	check_sort(t_stack s)
+int	check_sort(t_stack *s)
 {
 	int		max_found;
 	size_t	i;
 
 	i = 0;
 	max_found = 0;
-	while (i < s.size)
+	while (i < s->size)
 	{
-		if (s.stack[i] > s.stack[(i + 1) % s.size])
+		if (s->stack[i] > s->stack[(i + 1) % s->size])
 		{
 			if (max_found)
 				return (0);
@@ -32,16 +32,16 @@ int	check_sort(t_stack s)
 	return (1);
 }
 
-int	check_sort_reverse(t_stack s)
+int	check_sort_reverse(t_stack *s)
 {
 	int		max_found;
 	size_t	i;
 
 	i = 0;
 	max_found = 0;
-	while (i < s.size)
+	while (i < s->size)
 	{
-		if (s.stack[i] < s.stack[(i + 1) % s.size])
+		if (s->stack[i] < s->stack[(i + 1) % s->size])
 		{
 			if (max_found)
 				return (0);
@@ -52,14 +52,28 @@ int	check_sort_reverse(t_stack s)
 	return (1);
 }
 
-int	check_sort_strict(t_stack s)
+int	check_strict_sort(t_stack *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < s.size - 1)
+	while (i < s->size - 1)
 	{
-		if (s.stack[i] > s.stack[i + 1])
+		if (s->stack[i] > s->stack[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_strict_sort_reverse(t_stack *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < s->size - 1)
+	{
+		if (s->stack[i] < s->stack[i + 1])
 			return (0);
 		i++;
 	}

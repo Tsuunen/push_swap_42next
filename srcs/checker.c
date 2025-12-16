@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 10:15:03 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 11:27:43 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:32:11 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 		free(b.stack);
 		return (1);
 	}
-	if (check_sort_strict(a) && !b.size)
+	if (check_strict_sort(&a) && !b.size)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
