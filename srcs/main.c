@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:37:13 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:49:39 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	init_stacks(&a, &b);
 	arg_parser(argc, argv, &a, &args);
 	// printf("%f\n", compute_disorder(a));
-	radix_sort_remi(&a, &b);
+	radix_sort(&a, &b);
 	free(a.stack);
 	free(b.stack);
 	return (0);

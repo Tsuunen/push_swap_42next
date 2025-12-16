@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 14:35:48 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/15 15:42:02 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:51:16 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	radix_sort_remi(t_stack *a, t_stack *b)
 	max_bits = get_max_bits(a->size - 1);
 	while (bit < max_bits)
 	{
-		if (check_sort(*a))
+		if (check_sort(a))
 			return ;
 		i = 0;
 		size = a->size;

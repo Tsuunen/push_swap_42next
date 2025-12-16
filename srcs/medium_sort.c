@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:48:13 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:31:28 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:50:55 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	medium_sort(t_stack *a, t_stack *b)
 
 	if (init_bucket(&bucket, a))
 		return ;
-	while (a->size && !check_sort(*a))
+	while (a->size && !check_sort(a))
 	{
 		bucket_index = (a->stack[0] - bucket.min) * bucket.nbr / (bucket.max - bucket.min + 1);
 		if (bucket_index >= bucket.nbr)
