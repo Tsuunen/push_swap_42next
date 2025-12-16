@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 11:55:56 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 12:43:08 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_stack(t_stack s);
 int		find_max(t_stack s);
 int		find_min(t_stack s);
 int		universal_rotate(t_stack s, int direction);
-void	rotate_both(t_stack a, t_stack b, int direction);
+void	rotate_both(t_stack a, t_stack b, int direction, int print);
 int		check_sort(t_stack *s);
 int		max(int a, int b);
 int		min(int a, int b);
