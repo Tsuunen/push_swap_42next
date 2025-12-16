@@ -6,40 +6,12 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 12:28:52 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:31:59 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
-
-int	swap(t_stack s)
-{
-	int	tmp;
-
-	if (s.size < 2)
-		return (1);
-	tmp = s.stack[0];
-	s.stack[0] = s.stack[1];
-	s.stack[1] = tmp;
-	return (0);
-}
-
-int	s(t_stack s)
-{
-	if (swap(s))
-		return (1);
-	ft_printf("s%c\n", s.name);
-	return (0);
-}
-
-int	ss(t_stack a, t_stack b)
-{
-	swap(a);
-	swap(b);
-	ft_printf("ss\n");
-	return (0);
-}
 
 int	push(t_stack *from, t_stack *to)
 {

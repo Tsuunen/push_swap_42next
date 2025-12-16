@@ -30,7 +30,6 @@ ifeq ($(MODE), debug)
 endif
 
 all: libft $(NAME)
-	@echo $(SRCS)
 
 $(NAME): $(BUILD_DIR) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
