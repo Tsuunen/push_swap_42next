@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 16:24:33 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/15 16:46:45 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:36:03 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,17 @@ void	normalize(t_stack *s)
 	normalized = ft_calloc(sizeof(int), s->size);
 	if (!normalized)
 		return ;
-	i = 0;
-	while (i < (int)s->size)
+	i = -1;
+	while (++i < (int)s->size)
 	{
 		count = 0;
-		j = 0;
-		while (j < (int)s->size)
+		j = -1;
+		while (++j < (int)s->size)
 		{
 			if (s->stack[j] < s->stack[i])
 				count++;
-			j++;
 		}
 		normalized[i] = count;
-		i++;
 	}
 	free(s->stack);
 	s->stack = normalized;
