@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:48:13 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:50:55 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 11:56:57 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	medium_sort(t_stack *a, t_stack *b)
 				update_bucket_indexes_rotation(&bucket, b, dir, tmp);
 		}
 		tmp = a->stack[0];
-		push(a, b);
+		push(a, b, 1);
 		update_bucket_indexes_push(&bucket, bucket_index, b, tmp);
 	}
 	while (b->size)
@@ -157,7 +157,7 @@ void	medium_sort(t_stack *a, t_stack *b)
 		tmp = count_to_place_reverse(*a, b->stack[0], &dir);
 		while (tmp--)
 			universal_rotate(*a, dir);
-		push(b, a);
+		push(b, a, 1);
 	}
 	tmp = count_to_top(*a, find_min(*a), &dir);
 	while (tmp--)

@@ -6,12 +6,12 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 14:35:48 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:51:16 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 11:58:43 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "libft.h"
+// #include "libft.h"
 
 void	normalize(t_stack *s)
 {
@@ -25,19 +25,17 @@ void	normalize(t_stack *s)
 	normalized = ft_calloc(sizeof(int), s->size);
 	if (!normalized)
 		return ;
-	i = 0;
-	while (i < (int)s->size)
+	i = -1;
+	while (++i < (int)s->size)
 	{
 		count = 0;
-		j = 0;
-		while (j < (int)s->size)
+		j = -1;
+		while (++j < (int)s->size)
 		{
 			if (s->stack[j] < s->stack[i])
 				count++;
-			j++;
 		}
 		normalized[i] = count;
-		i++;
 	}
 	free(s->stack);
 	s->stack = normalized;
@@ -94,3 +92,4 @@ void	radix_sort_remi(t_stack *a, t_stack *b)
 	while (b->size)
 		push(b, a);
 }
+

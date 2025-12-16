@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:50:32 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 11:55:56 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_stack
 
 int		swap(t_stack s);
 int		s(t_stack s);
-int		ss(t_stack a, t_stack b);
-int		push(t_stack *from, t_stack *to);
+int		ss(t_stack a, t_stack b, int print);
+int		push(t_stack *from, t_stack *to, int print);
 int		rotate(t_stack s);
 int		rotate_reverse(t_stack s);
 int		shift_reverse(t_stack s);

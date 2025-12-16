@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 17:13:22 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 11:54:52 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:48:31 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ int	universal_rotate(t_stack s, int direction)
 	return (rotate_reverse(s));
 }
 
-void	rotate_both(t_stack a, t_stack b, int direction)
+void	rotate_both(t_stack a, t_stack b, int direction, int print)
 {
 	if (!direction)
 	{
-		ft_printf("rr\n");
+		if (print)
+			ft_printf("rr\n");
 		rotate(a);
 		rotate(b);
 	}
 	else
 	{
-		ft_printf("rrr\n");
+		if (print)
+			ft_printf("rrr\n");
 		rotate_reverse(a);
 		rotate_reverse(b);
 	}
