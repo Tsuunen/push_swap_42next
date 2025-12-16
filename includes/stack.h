@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/15 15:52:45 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:36:33 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int		max(int a, int b);
 int		min(int a, int b);
 int		is_in_stack(t_stack s, int value);
 float	compute_disorder(t_stack a);
-void	radix_sort(t_stack*, t_stack*);
+void	radix_sort(t_stack* a, t_stack* b);
+void	radix_sort_remi(t_stack* a, t_stack* b);
 int		check_sort_reverse(t_stack s);
 int		check_strict_sort(t_stack *s);
 int		check_strict_sort_reverse(t_stack *s);
