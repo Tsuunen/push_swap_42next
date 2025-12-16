@@ -6,24 +6,25 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/16 10:54:13 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:56:06 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <limits.h>
 
-static int	has_bitdiff(t_stack *s, int bit)
+static int	has_bitdiff(t_stack *s, int *bit)
 {
 	size_t	i;
 
 	i = 1;
 	while (i < s->size)
 	{
-		if ((s->stack[i] & (1 << bit)) != (s->stack[i - 1] & (1 << bit)))
+		if ((s->stack[i] & (1 << (*bit))) != (s->stack[i - 1] & (1 << (*bit))))
 			return (1);
 		i++;
 	}
+	(*bit)++;
 	return (0);
 }
 
@@ -43,11 +44,8 @@ static int	normalize(t_stack *s)
 		j = 0;
 		min = 0;
 		while (j < s->size)
-		{
-			if (s->stack[j] < s->stack[min])
-				min = j;
-			j++;
-		}
+			if (s->stack[j++] < s->stack[min])
+				min = j - 1;
 		new[min] = i;
 		s->stack[min] = INT_MAX;
 		i++;
@@ -67,60 +65,40 @@ static void	push_skip(t_stack *src, t_stack *dest, int bit, int state)
 		universal_rotate(*src, 0);
 }
 
-void	radix_sort(t_stack *a, t_stack  *b)
+void	move_stack(t_stack *src, t_stack *dest, int bit)
 {
-	int	bit;
 	int	i;
 	int	size;
+
+	i = 0;
+	size = src->size;
+	while (i < size)
+	{
+		if (src->name == 'a' && check_strict_sort(src))
+			break ;
+		push_skip(src, dest, bit, src->name == 'b');
+		i++;
+	}
+}
+
+void	radix_sort(t_stack *a, t_stack *b)
+{
+	int	bit;
 
 	bit = 0;
 	if (normalize(a))
 		return ;
+	for (size_t i = 0; i < a->size; i--)
+		ft_printf("%d \n", a->stack[i]);
 	while (!check_strict_sort(a) && bit <= 32)
 	{
-		if (!has_bitdiff(a, bit))
-		{
-			bit++;
-			continue;
-		}
-		i = 0;
-		size = a->size;
-		while (++i <= size)
-			push_skip(a, b, bit, 0);
+		if (!has_bitdiff(a, &bit))
+			continue ;
+		move_stack(a, b, bit);
 		if (!check_strict_sort_reverse(b))
-		{
-			i = 0;
-			size = b->size;
-			while (++i <= size)
-				push_skip(b, a, bit + 1, 1);
-		}
+			move_stack(b, a, bit + 1);
 		bit++;
 	}
 	while (b->size)
 		push(b, a, 1);
 }
-/*void	radix_sort(t_stack *a, t_stack *b)
-{
-	int	bit;
-	int	i;
-	int	size;
-
-	bit = 0;
-	if (normalize(a))
-		return ;
-	while (!check_sort(*a) && bit <= 32)
-	{
-		if (!has_bitdiff(a, bit))
-		{
-			bit++;
-			continue;
-		}
-		i = 0;
-		size = a->size;
-		while (++i <= size)
-			push_skip(a, b, bit, 0);
-		bit++;
-		while (b->size)
-			push(b, a);
-	}
-}*/

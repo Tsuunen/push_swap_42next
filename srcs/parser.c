@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 10:31:35 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:58:39 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 		if (!check_params(args, argv[i]))
 		{
 			a->stack[i - 1] = ft_strtoi(argv[i], &end);
-			if (*end || is_in_stack(*a, a->stack[i]))
+			if (*end || is_in_stack(a, a->stack[i]))
 				return (1);
 			a->size++;
 		}
