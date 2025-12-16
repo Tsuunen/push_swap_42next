@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 14:35:48 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/15 15:42:02 by relaforg         ###   ########.fr       */
+/*   Created: 2025/12/15 16:24:33 by relaforg          #+#    #+#             */
+/*   Updated: 2025/12/15 16:46:45 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "libft.h"
+// #include "libft.h"
 
 void	normalize(t_stack *s)
 {
@@ -94,3 +94,4 @@ void	radix_sort_remi(t_stack *a, t_stack *b)
 	while (b->size)
 		push(b, a);
 }
+

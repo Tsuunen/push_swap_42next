@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 12:28:52 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:44:41 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ int	s(t_stack s)
 	return (0);
 }
 
-int	ss(t_stack a, t_stack b)
+int	ss(t_stack a, t_stack b, int print)
 {
 	swap(a);
 	swap(b);
-	ft_printf("ss\n");
+	if (print)
+		ft_printf("ss\n");
 	return (0);
 }
 
-int	push(t_stack *from, t_stack *to)
+int	push(t_stack *from, t_stack *to, int print)
 {
 	if (!from->size)
 		return (1);
@@ -51,7 +52,8 @@ int	push(t_stack *from, t_stack *to)
 	to->size += 1;
 	shift_reverse(*from);
 	from->size -= 1;
-	ft_printf("p%c\n", to->name);
+	if (print)
+		ft_printf("p%c\n", to->name);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:12:21 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 12:30:39 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:53:31 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	simple_sort(t_stack *a, t_stack *b)
 		tmp = count_to_top(*a, min, &dir);
 		while (tmp--)
 			universal_rotate(*a, dir);
-		push(a, b);
+		push(a, b, 1);
 		i++;
 	}
 	while (i--)
-		push(b, a);
+		push(b, a, 1);
 }

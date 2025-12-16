@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/12 14:44:22 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/16 10:54:13 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ static int	normalize(t_stack *s)
 static void push_skip(t_stack *src, t_stack *dest, int bit, int state)
 {
 	if ((src->stack[0] & (1 << bit)) && state)
-		push(src, dest);
+		push(src, dest, 1);
 	else if (!(src->stack[0] & (1 << bit)) && !state)
-		push(src, dest);
+		push(src, dest, 1);
 	else
 		universal_rotate(*src, 0);
 }
@@ -138,5 +138,5 @@ void	radix_sort(t_stack *a, t_stack  *b)
 		bit++;
 	}
 	while (b->size)
-		push(b, a);
+		push(b, a, 1);
 }

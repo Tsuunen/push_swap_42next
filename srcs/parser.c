@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/10 16:46:40 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:31:35 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@
 #define MEDIUM 2
 #define COMPLEX 4
 #define BENCH 8
+#define ADAPTATIVE 16
+
+int check_params2(char *args, char *argv)
+{
+	if (!ft_strncmp(argv, "--adaptative", 13))
+	{
+		*args |= ADAPTATIVE;
+		return (1);
+	}
+	else if (!ft_strncmp(argv, "--bench", 8))
+	{
+		*args |= BENCH;
+		return (1);
+	}
+	return (0);
+}
 
 int	check_params(char *args, char *argv)
 {
@@ -38,11 +54,8 @@ int	check_params(char *args, char *argv)
 		*args |= COMPLEX;
 		return (1);
 	}
-	else if (!ft_strncmp(argv, "--bench", 8))
-	{
-		*args |= BENCH;
-		return (1);
-	}
+	else
+		check_params2(args, argv);
 	return (0);
 }
 
@@ -53,7 +66,7 @@ int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 	(void) args;
 
 	i = 1;
-	*args = 0;
+	*args = ADAPTATIVE;
 	while (i < argc)
 	{
 		if (!check_params(args, argv[i]))
