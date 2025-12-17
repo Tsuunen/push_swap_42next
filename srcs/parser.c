@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 14:27:05 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 14:29:59 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 	{
 		if (!check_params(args, argv[i]))
 		{
-			if (ft_strlen(argv[i]) < 2)
+			if (ft_strlen(argv[i]) < 1)
 				return (1);
 			a->stack[a->size] = ft_strtoi(argv[i], &end);
 			if (*end || is_in_stack(a, a->stack[a->size]))
