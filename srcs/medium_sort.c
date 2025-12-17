@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 08:57:16 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 11:27:12 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:42:27 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	medium_sort(t_stack *a, t_stack *b, int *op_nbr)
 	int	dir;
 	int	done;
 
+	if (check_sort(a))
+		return (bring_min_to_top(a, op_nbr));
 	bucket_size = a->size / (ft_isqrt(a->size) / 2) + 1;
 	if (normalize(a))
 		return ;

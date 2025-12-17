@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 09:08:54 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:41:05 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int		check_strict_sort(t_stack *s);
 int		check_strict_sort_reverse(t_stack *s);
 int		arg_parser(int argc, char **argv, t_stack *a, char *args);
 int		normalize(t_stack *s);
+void	bring_min_to_top(t_stack *a, int *op_nbr);
 
 #endif

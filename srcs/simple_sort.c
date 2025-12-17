@@ -6,13 +6,13 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:12:21 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 13:30:14 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:40:57 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static void	bring_min_to_top(t_stack *a, int *op_nbr)
+void	bring_min_to_top(t_stack *a, int *op_nbr)
 {
 	int	tmp;
 	int	dir;
