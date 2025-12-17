@@ -5,3 +5,4 @@ push_swap_tester
 .vscode
 *.ini
 checker_linux
+checker
