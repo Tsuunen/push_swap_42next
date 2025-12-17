@@ -68,6 +68,7 @@ clean:
 fclean: clean
 	$(MAKE) -C libft fclean
 	rm -f $(NAME)
+	rm -f checker
 
 re: fclean all
 
