@@ -6,18 +6,12 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 12:38:54 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 13:21:55 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
-
-#define SIMPLE 1
-#define MEDIUM 2
-#define COMPLEX 4
-#define BENCH 16
-#define ADAPTATIVE 8
 
 int	check_params2(char *args, char *argv)
 {

@@ -6,7 +6,7 @@
 /*   By: relaforg <relaforg@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:45:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 11:27:36 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:32:08 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,20 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int	ft_printf(const char *fmt, ...)
-	__attribute__((format(printf, 1, 2)));
-int	printf_char(int c, char *buf);
-int	printf_string(char *str, char *buf);
-int	printf_int(int nbr, char *buf);
-int	printf_uint(unsigned int nbr, char *buf);
-int	printf_xint(int nbr, char *buf);
-int	printf_xint_up(int nbr, char *buf);
-int	printf_pointer(void *ptr, char *buf);
-int	printf_percent(char *buf);
-int	manage_option(va_list ap, char opt, char *buf);
-int	parse_fmt(va_list ap, char *buf, const char *fmt);
-int	ft_dprintf(int fd, const char *fmt, ...)
-	__attribute__((format(printf, 2, 3)));
+int		ft_printf(const char *fmt, ...)
+		__attribute__((format(printf, 1, 2)));
+int		printf_char(int c, char *buf);
+int		printf_string(char *str, char *buf);
+int		printf_int(int nbr, char *buf);
+int		printf_uint(unsigned int nbr, char *buf);
+int		printf_xint(int nbr, char *buf);
+int		printf_xint_up(int nbr, char *buf);
+int		printf_pointer(void *ptr, char *buf);
+int		printf_percent(char *buf);
+int		manage_option(va_list ap, char opt, char *buf);
+int		parse_fmt(va_list ap, char *buf, const char *fmt);
+int		ft_dprintf(int fd, const char *fmt, ...)
+		__attribute__((format(printf, 2, 3)));
 
 // --- Linked List ---
 typedef struct s_list
@@ -122,6 +122,6 @@ enum	e_errcode
 char	*get_next_line(int fd);
 
 // --- math ---
-int	ft_isqrt(int n);
+int		ft_isqrt(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/17 12:38:48 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 13:24:27 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,6 @@ static int	has_bitdiff(t_stack *s, int bit)
 			return (1);
 		i++;
 	}
-	return (0);
-}
-
-int	normalize(t_stack *s)
-{
-	int	*normalized;
-	int	i;
-	int	j;
-	int	count;
-
-	if (s->size <= 1)
-		return (1);
-	normalized = ft_calloc(sizeof(int), s->size);
-	if (!normalized)
-		return (1);
-	i = -1;
-	while (++i < (int)s->size)
-	{
-		count = 0;
-		j = -1;
-		while (++j < (int)s->size)
-			if (s->stack[j] < s->stack[i])
-				count++;
-		normalized[i] = count;
-	}
-	free(s->stack);
-	s->stack = normalized;
 	return (0);
 }
 

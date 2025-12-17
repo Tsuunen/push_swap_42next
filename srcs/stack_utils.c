@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:35:42 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 10:51:54 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:24:16 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,31 @@ int	find_max(t_stack s)
 		i++;
 	}
 	return (max);
+}
+
+int	normalize(t_stack *s)
+{
+	int	*normalized;
+	int	i;
+	int	j;
+	int	count;
+
+	if (s->size <= 1)
+		return (1);
+	normalized = ft_calloc(sizeof(int), s->size);
+	if (!normalized)
+		return (1);
+	i = -1;
+	while (++i < (int)s->size)
+	{
+		count = 0;
+		j = -1;
+		while (++j < (int)s->size)
+			if (s->stack[j] < s->stack[i])
+				count++;
+		normalized[i] = count;
+	}
+	free(s->stack);
+	s->stack = normalized;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 13:15:43 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 13:23:16 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <stddef.h>
 # include "libft.h"
+
+#define SIMPLE 1
+#define MEDIUM 2
+#define COMPLEX 4
+#define BENCH 16
+#define ADAPTATIVE 8
 
 typedef struct s_stack
 {
@@ -46,5 +52,6 @@ int		check_strict_sort_reverse(t_stack *s);
 int		arg_parser(int argc, char **argv, t_stack *a, char *args);
 int		normalize(t_stack *s);
 void	bring_min_to_top(t_stack *a, int *op_nbr);
+void	print_bench(int *op_nbr, float disorder, char args);
 
 #endif
