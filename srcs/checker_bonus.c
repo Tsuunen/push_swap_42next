@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 10:15:03 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 14:02:38 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 14:24:19 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ int	checker(t_stack *a, t_stack *b)
 	char	*op;
 
 	op = get_next_line(0);
-	op[ft_strlen(op) - 1] = 0;
 	while (op && *op)
 	{
+		op[ft_strlen(op) - 1] = 0;
 		if (manage_op(a, b, op))
 		{
 			free(op);
-			ft_dprintf(2, "Error\n");
 			return (1);
 		}
 		free(op);
 		op = get_next_line(0);
-		op[ft_strlen(op) - 1] = 0;
 	}
 	return (0);
 }
@@ -79,6 +77,14 @@ int	alloc_stack(t_stack *a, t_stack *b, int argc)
 	return (0);
 }
 
+void	free_quit(t_stack *a, t_stack *b)
+{
+	free(a->stack);
+	free(b->stack);
+	ft_dprintf(2, "Error\n");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
@@ -89,13 +95,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (alloc_stack(&a, &b, argc))
 		return (1);
-	arg_parser(argc, argv, &a, &args);
+	if (arg_parser(argc, argv, &a, &args))
+		free_quit(&a, &b);
 	if (checker(&a, &b))
-	{
-		free(a.stack);
-		free(b.stack);
-		return (1);
-	}
+		free_quit(&a, &b);
 	if (check_strict_sort(&a) && !b.size)
 		ft_printf("OK\n");
 	else

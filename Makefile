@@ -53,7 +53,7 @@ $(BUILD_DIR):
 libft:
 	$(MAKE) -C libft
 
-bonus: checker
+bonus: libft checker
 
 checker: $(BUILD_DIR) $(CHECKER_OBJS)
 	$(CC) $(CFLAGS) $(CHECKER_OBJS) -o checker $(LIBFT)

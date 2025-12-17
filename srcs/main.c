@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 13:23:48 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 14:28:41 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int	launch_sort(t_stack *a, t_stack *b, char args)
 	return (0);
 }
 
-void	free_exit(t_stack *a, t_stack *b)
+void	free_exit(t_stack *a, t_stack *b, int print)
 {
 	free(a->stack);
 	free(b->stack);
-	ft_dprintf(2, "Error\n");
+	if (print)
+		ft_dprintf(2, "Error\n");
 	exit(1);
 }
 
@@ -80,9 +81,11 @@ int	main(int argc, char **argv)
 	}
 	init_stacks(&a, &b);
 	if (arg_parser(argc, argv, &a, &args))
-		free_exit(&a, &b);
+		free_exit(&a, &b, 1);
+	if (!a.size)
+		free_exit(&a, &b, 0);
 	if (launch_sort(&a, &b, args))
-		free_exit(&a, &b);
+		free_exit(&a, &b, 1);
 	free(a.stack);
 	free(b.stack);
 	return (0);
