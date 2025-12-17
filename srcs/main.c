@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 12:55:07 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:09:17 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,80 @@ void	print_stack(t_stack s)
 	ft_printf(" ]\n");
 }
 
-void	adaptative_sort(t_stack *a, t_stack *b)
+void	adaptative_sort(t_stack *a, t_stack *b, int *op_nbr, float disorder)
 {
-	float	disorder;
-
-	disorder = compute_disorder(a);
 	if (disorder < 0.2)
-		simple_sort(a, b);
+		simple_sort(a, b, op_nbr);
 	else if (disorder < 0.5)
-		medium_sort(a, b);
+		medium_sort(a, b, op_nbr);
 	else
-		radix_sort(a, b);
+		radix_sort(a, b, op_nbr);
 }
 
-void	launch_sort(t_stack *a, t_stack *b, char args)
+int	compute_total_ops(int *op_nbr)
 {
+	int	i;
+	int	s;
+
+	i = 0;
+	s = 0;
+	while (i < 11)
+	{
+		s += op_nbr[i];
+		i++;
+	}
+	return (s);
+}
+
+void	print_bench(int *op_nbr, float disorder, char args)
+{
+	ft_dprintf(2, "[bench] Disorder: %d.%d%%\n", (int) (disorder * 100),
+			(int)(disorder * 10000) % 100);
+	ft_dprintf(2, "[bench] Strategy: ");
 	if (args & 1)
-		simple_sort(a, b);
+		ft_printf("Simple\n");
 	else if ((args >> 1) & 1)
-		medium_sort(a, b);
+		ft_printf("Medium\n");
 	else if ((args >> 2) & 1)
-		radix_sort(a, b);
+		ft_printf("Complex\n");
 	else if ((args >> 3) & 1)
-		adaptative_sort(a, b);
+	{
+		ft_printf("Adaptative / ");
+		if (disorder < 0.2)
+			ft_dprintf(2, "O(n²)\n");
+		else if (disorder < 0.5)
+			ft_dprintf(2, "O(n√n)\n");
+		else
+			ft_dprintf(2, "O(nlogn)\n");
+	}
+	ft_dprintf(2, "[bench] Total Ops: %d\n", compute_total_ops(op_nbr));
+	ft_dprintf(2, "[bench] sa: %d, sb: %d, ss: %d, pa: %d, pb: %d\n",
+			op_nbr[0], op_nbr[1], op_nbr[2], op_nbr[3], op_nbr[4]);
+	ft_dprintf(2, "[bench] ra: %d, rb: %d, rr: %d, rra: %d, rrb: %d, rrr: %d\n",
+			op_nbr[5], op_nbr[6], op_nbr[7], op_nbr[8], op_nbr[9], op_nbr[10]);
+}
+
+int	launch_sort(t_stack *a, t_stack *b, char args)
+{
+	int	*op_nbr;
+	float	disorder;
+
+	op_nbr = ft_calloc(11, sizeof(int));
+	if (!op_nbr)
+		return (1);
+	disorder = compute_disorder(a);
+	if (args & 1)
+		simple_sort(a, b, op_nbr);
+	else if ((args >> 1) & 1)
+		medium_sort(a, b, op_nbr);
+	else if ((args >> 2) & 1)
+		radix_sort(a, b, op_nbr);
+	else if ((args >> 3) & 1)
+		adaptative_sort(a, b, op_nbr, disorder);
 	if ((args >> 4) & 1)
-		ft_printf("bench\n");
+		print_bench(op_nbr, disorder, args);
+	free(op_nbr);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -80,9 +129,21 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_stacks(&a, &b);
-	arg_parser(argc, argv, &a, &args);
-	// printf("%f\n", compute_disorder(a));
-	launch_sort(&a, &b, args);
+	if (arg_parser(argc, argv, &a, &args))
+	{
+		free(a.stack);
+		free(b.stack);
+		ft_dprintf(2, "Error\n");
+		return (1);
+	}
+	medium_sort(&a, &b, NULL);
+	// if (launch_sort(&a, &b, args))
+	// {
+	// 	free(a.stack);
+	// 	free(b.stack);
+	// 	ft_dprintf(2, "Error\n");
+	// 	return (1);
+	// }
 	free(a.stack);
 	free(b.stack);
 	return (0);

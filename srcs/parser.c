@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 12:39:18 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:35:36 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 
 int check_params2(char *args, char *argv)
 {
-	if (!ft_strncmp(argv, "--adaptative", 13))
+	if (!ft_strncmp(argv, "--adaptive", 11))
 	{
+		*args &= BENCH;
 		*args |= ADAPTATIVE;
 		return (1);
 	}
@@ -38,24 +39,24 @@ int	check_params(char *args, char *argv)
 {
 	if (!ft_strncmp(argv, "--simple", 9))
 	{
-		*args &= BENCH + SIMPLE;
+		*args &= BENCH;
 		*args |= SIMPLE;
 		return (1);
 	}
 	else if (!ft_strncmp(argv, "--medium", 9))
 	{
-		*args &= BENCH + MEDIUM;
+		*args &= BENCH;
 		*args |= MEDIUM;
 		return (1);
 	}
 	else if (!ft_strncmp(argv, "--complex", 10))
 	{
-		*args &= BENCH + COMPLEX;
+		*args &= BENCH;
 		*args |= COMPLEX;
 		return (1);
 	}
 	else
-		check_params2(args, argv);
+		return (check_params2(args, argv));
 	return (0);
 }
 
@@ -71,8 +72,8 @@ int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 	{
 		if (!check_params(args, argv[i]))
 		{
-			a->stack[i - 1] = ft_strtoi(argv[i], &end);
-			if (*end || is_in_stack(a, a->stack[i]))
+			a->stack[a->size] = ft_strtoi(argv[i], &end);
+			if (*end || is_in_stack(a, a->stack[a->size]))
 				return (1);
 			a->size++;
 		}

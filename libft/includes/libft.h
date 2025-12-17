@@ -6,7 +6,7 @@
 /*   By: relaforg <relaforg@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:45:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 13:54:48 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/16 13:48:43 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int	printf_xint(int nbr, char *buf);
 int	printf_xint_up(int nbr, char *buf);
 int	printf_pointer(void *ptr, char *buf);
 int	printf_percent(char *buf);
+int	manage_option(va_list ap, char opt, char *buf);
+int	parse_fmt(va_list ap, char *buf, const char *fmt);
+int	ft_dprintf(int fd, const char *fmt, ...)
+	__attribute__((format(printf, 2, 3)));
 
 // --- Linked List ---
 typedef struct s_list
