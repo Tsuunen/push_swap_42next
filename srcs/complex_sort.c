@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/17 09:08:46 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:36:12 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	normalize(t_stack *s)
 		return (1);
 	normalized = ft_calloc(sizeof(int), s->size);
 	if (!normalized)
-		return ;
+		return (1);
 	i = -1;
 	while (++i < (int)s->size)
 	{

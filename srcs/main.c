@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 16:09:17 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:40:06 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,14 +136,13 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Error\n");
 		return (1);
 	}
-	medium_sort(&a, &b, NULL);
-	// if (launch_sort(&a, &b, args))
-	// {
-	// 	free(a.stack);
-	// 	free(b.stack);
-	// 	ft_dprintf(2, "Error\n");
-	// 	return (1);
-	// }
+	if (launch_sort(&a, &b, args))
+	{
+		free(a.stack);
+		free(b.stack);
+		ft_dprintf(2, "Error\n");
+		return (1);
+	}
 	free(a.stack);
 	free(b.stack);
 	return (0);

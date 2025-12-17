@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 14:35:36 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:38:49 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 {
 	int	i;
 	char	*end;
-	(void) args;
 
 	i = 1;
 	*args = ADAPTATIVE;

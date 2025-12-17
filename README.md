@@ -40,3 +40,6 @@ We opted for a **bucket style sorting** method, it gives a great challenge in or
 
 ## Complex Algorithm
 For the last one we implemented a **binary LSB radix sort**. The radix is a non-comparison sorting algorithm. So it makes it a really intresting algorithm to try understand and implement.
+
+## Adaptive Algorithm
+For the adaptive algorithm, we used the thersholds specified in the subjects and we implemented every mentioned above algorithm depending on the calculated disorder

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 10:15:03 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 11:32:11 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:34:14 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	manage_op(t_stack *a, t_stack *b, char *op)
 	else if (!ft_strncmp(op, "sb", 3))
 		swap(*b);
 	else if (!ft_strncmp(op, "ss", 3))
-		ss(*a, *b, 0);
+		ss(*a, *b, 0, NULL);
 	else if (!ft_strncmp(op, "pa", 3))
-		push(b, a, 0);
+		push(b, a, 0, NULL);
 	else if (!ft_strncmp(op, "pb", 3))
-		push(a, b, 0);
+		push(a, b, 0, NULL);
 	else if (!ft_strncmp(op, "rra", 4))
 		rotate_reverse(*a);
 	else if (!ft_strncmp(op, "rrb", 4))
