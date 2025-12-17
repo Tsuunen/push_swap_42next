@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:54:20 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/09 10:25:34 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:15:16 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,4 @@ int	manage_minmax(t_stack s, int value, int *direction)
 	if (value < s.stack[min])
 		return (min_handler(s, direction));
 	return (-1);
-}
-
-int	count_to_place(t_stack s, int value, int *direction)
-{
-	int	tmp;
-	int	min;
-
-	if (s.size < 2)
-		return (0);
-	tmp = manage_minmax(s, value, direction);
-	if (tmp != -1)
-		return (tmp);
-	tmp = 0;
-	min = s.size;
-	while ((size_t) tmp < s.size)
-	{
-		if (value >= s.stack[tmp]
-			&& value <= s.stack[(tmp - 1 + s.size) % s.size])
-			if (min > count_to_top(s, tmp, direction))
-				min = count_to_top(s, tmp, direction);
-		tmp++;
-	}
-	return (min);
 }

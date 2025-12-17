@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 12:39:48 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 13:14:04 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ static void	init_stacks(t_stack *a, t_stack *b)
 	b->size = 0;
 	a->name = 'a';
 	b->name = 'b';
-}
-
-void	print_stack(t_stack s)
-{
-	size_t	i;
-
-	i = 0;
-	ft_printf("[ ");
-	while (i < s.size)
-	{
-		ft_printf("%d", s.stack[i++]);
-		if (i < s.size)
-			ft_printf(", ");
-	}
-	ft_printf(" ]\n");
 }
 
 void	adaptative_sort(t_stack *a, t_stack *b, int *op_nbr, float disorder)

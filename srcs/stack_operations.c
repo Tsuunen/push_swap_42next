@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 13:22:17 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:15:33 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,6 @@ int	swap(t_stack s)
 	tmp = s.stack[0];
 	s.stack[0] = s.stack[1];
 	s.stack[1] = tmp;
-	return (0);
-}
-
-int	s(t_stack s, int op_nbr[11])
-{
-	if (swap(s))
-		return (1);
-	ft_printf("s%c\n", s.name);
-	if (op_nbr)
-	{
-		if (s.name == 'a')
-			op_nbr[0]++;
-		else if (s.name == 'b')
-			op_nbr[1]++;
-	}
 	return (0);
 }
 
