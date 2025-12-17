@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/17 11:36:12 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 12:38:48 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	move_stack(t_stack *src, t_stack *dest, int bit, int *op_nbr)
 	size = src->size;
 	while (i < size)
 	{
-		if (src->name == 'a' && check_strict_sort(src) &&
-				!has_bitdiff(src, bit + 1)
-				&& !has_bitdiff(dest, bit + 1))
+		if (src->name == 'a' && check_strict_sort(src)
+			&& !has_bitdiff(src, bit + 1)
+			&& !has_bitdiff(dest, bit + 1))
 			break ;
 		if (src->name == 'a')
 			push_skip_0(src, dest, bit, op_nbr);

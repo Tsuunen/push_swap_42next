@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:21:31 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 11:38:49 by nahecre          ###   ########.fr       */
+/*   Updated: 2025/12/17 12:38:54 by nahecre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define BENCH 16
 #define ADAPTATIVE 8
 
-int check_params2(char *args, char *argv)
+int	check_params2(char *args, char *argv)
 {
 	if (!ft_strncmp(argv, "--adaptive", 11))
 	{
@@ -62,7 +62,7 @@ int	check_params(char *args, char *argv)
 
 int	arg_parser(int argc, char **argv, t_stack *a, char *args)
 {
-	int	i;
+	int		i;
 	char	*end;
 
 	i = 1;

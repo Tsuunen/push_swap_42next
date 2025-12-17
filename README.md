@@ -29,6 +29,7 @@ You can now pipe or write your solution to the standard input
  - Various Geeks for Geeks & Wikipedia article to understand the different algorithms
  - ChatGPT to explain the left over questions on the algorithms
  - ChatGPT to try debugging code without much success if none
+ - Nlallema for great explaination of the bucket sort.
 
 # Algorithms
 
@@ -36,7 +37,7 @@ You can now pipe or write your solution to the standard input
 We chose the **selection sort** because it is an easy and quick algorithm to understand and implement
 
 ## Medium Algorithm
-We opted for a **bucket style sorting** method, it gives a great challenge in order to track various position in a stack even after rotations and pushes.
+We opted for a **bucket sort**, it allows to drastically reduce the number of action needed compared to the selection sort. It is also pretty easy to undersant and implement, thus makes it a great candidate for the project.
 
 ## Complex Algorithm
 For the last one we implemented a **binary LSB radix sort**. The radix is a non-comparison sorting algorithm. So it makes it a really intresting algorithm to try understand and implement.
