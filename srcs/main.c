@@ -6,13 +6,12 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 14:36:01 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 14:39:22 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stack.h"
-#include <stdio.h>
 
 static void	init_stacks(t_stack *a, t_stack *b)
 {
