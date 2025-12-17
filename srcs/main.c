@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 16:09:17 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:35:05 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	compute_total_ops(int *op_nbr)
 
 void	print_bench(int *op_nbr, float disorder, char args)
 {
-	ft_dprintf(2, "[bench] Disorder: %d.%d%%\n", (int) (disorder * 100),
-			(int)(disorder * 10000) % 100);
+	ft_dprintf(2, "[bench] Disorder: %d.%d%%\n", (int)(disorder * 100),
+		(int)(disorder * 10000) % 100);
 	ft_dprintf(2, "[bench] Strategy: ");
 	if (args & 1)
 		ft_printf("Simple\n");
@@ -85,14 +85,14 @@ void	print_bench(int *op_nbr, float disorder, char args)
 	}
 	ft_dprintf(2, "[bench] Total Ops: %d\n", compute_total_ops(op_nbr));
 	ft_dprintf(2, "[bench] sa: %d, sb: %d, ss: %d, pa: %d, pb: %d\n",
-			op_nbr[0], op_nbr[1], op_nbr[2], op_nbr[3], op_nbr[4]);
+		op_nbr[0], op_nbr[1], op_nbr[2], op_nbr[3], op_nbr[4]);
 	ft_dprintf(2, "[bench] ra: %d, rb: %d, rr: %d, rra: %d, rrb: %d, rrr: %d\n",
-			op_nbr[5], op_nbr[6], op_nbr[7], op_nbr[8], op_nbr[9], op_nbr[10]);
+		op_nbr[5], op_nbr[6], op_nbr[7], op_nbr[8], op_nbr[9], op_nbr[10]);
 }
 
 int	launch_sort(t_stack *a, t_stack *b, char args)
 {
-	int	*op_nbr;
+	int		*op_nbr;
 	float	disorder;
 
 	op_nbr = ft_calloc(11, sizeof(int));
@@ -113,6 +113,14 @@ int	launch_sort(t_stack *a, t_stack *b, char args)
 	return (0);
 }
 
+void	free_exit(t_stack *a, t_stack *b)
+{
+	free(a->stack);
+	free(b->stack);
+	ft_dprintf(2, "Error\n");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
@@ -130,20 +138,9 @@ int	main(int argc, char **argv)
 	}
 	init_stacks(&a, &b);
 	if (arg_parser(argc, argv, &a, &args))
-	{
-		free(a.stack);
-		free(b.stack);
-		ft_dprintf(2, "Error\n");
-		return (1);
-	}
-	medium_sort(&a, &b, NULL);
-	// if (launch_sort(&a, &b, args))
-	// {
-	// 	free(a.stack);
-	// 	free(b.stack);
-	// 	ft_dprintf(2, "Error\n");
-	// 	return (1);
-	// }
+		free_exit(&a, &b);
+	if (launch_sort(&a, &b, args))
+		free_exit(&a, &b);
 	free(a.stack);
 	free(b.stack);
 	return (0);

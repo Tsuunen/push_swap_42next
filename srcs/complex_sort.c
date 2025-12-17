@@ -6,7 +6,7 @@
 /*   By: nahecre <nahecre@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 09:40:40 by nahecre           #+#    #+#             */
-/*   Updated: 2025/12/17 09:08:46 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:36:40 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	normalize(t_stack *s)
 		return (1);
 	normalized = ft_calloc(sizeof(int), s->size);
 	if (!normalized)
-		return ;
+		return (1);
 	i = -1;
 	while (++i < (int)s->size)
 	{
@@ -79,9 +79,9 @@ void	move_stack(t_stack *src, t_stack *dest, int bit, int *op_nbr)
 	size = src->size;
 	while (i < size)
 	{
-		if (src->name == 'a' && check_strict_sort(src) &&
-				!has_bitdiff(src, bit + 1)
-				&& !has_bitdiff(dest, bit + 1))
+		if (src->name == 'a' && check_strict_sort(src)
+			&& !has_bitdiff(src, bit + 1)
+			&& !has_bitdiff(dest, bit + 1))
 			break ;
 		if (src->name == 'a')
 			push_skip_0(src, dest, bit, op_nbr);
