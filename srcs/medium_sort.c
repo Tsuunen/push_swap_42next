@@ -6,78 +6,76 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 08:57:16 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/17 11:06:43 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:27:12 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "libft.h"
 
-int	ft_isqrt(int n)
+int	find_from_top(t_stack *a, int bucket_size, int k, int *dir)
 {
-	int	i;
+	int		tmp;
+	size_t	i;
 
 	i = 0;
-	while (i * i <= n)
+	tmp = 0;
+	while (i < a->size)
 	{
-		if (i * i == n)
-			return (i);
+		if (a->stack[i] >= k * bucket_size
+			&& a->stack[i] < (k + 1) * bucket_size)
+		{
+			tmp = i;
+			*dir = 0;
+			break ;
+		}
 		i++;
 	}
-	return (i - 1);
+	return (tmp);
 }
 
-void	medium_sort(t_stack *a, t_stack *b, int *op_nbr)
+int	find_from_bot(t_stack *a, int bucket_size, int k, int *dir)
 {
-	int nbr_bucket;
-	int bucket_size;
-	int	k;
+	int		tmp;
 	size_t	i;
+
+	i = a->size - 1;
+	tmp = 0;
+	while (i >= 0)
+	{
+		if (a->stack[i] >= k * bucket_size
+			&& a->stack[i] < (k + 1) * bucket_size)
+		{
+			tmp = a->size - i;
+			*dir = 1;
+			break ;
+		}
+		i--;
+	}
+	return (tmp);
+}
+
+int	find_best(t_stack *a, int bucket_size, int k, int *dir)
+{
+	int	tmp1;
+	int	tmp2;
+	int	temp_dir;
+
+	tmp1 = find_from_top(a, bucket_size, k, dir);
+	tmp2 = find_from_top(a, bucket_size, k, &temp_dir);
+	if (tmp2 < tmp1)
+	{
+		*dir = temp_dir;
+		return (tmp2);
+	}
+	return (tmp1);
+}
+
+void	push_to_b(t_stack *a, t_stack *b, int *op_nbr)
+{
 	int	tmp;
 	int	dir;
-	int	done;
 
-	nbr_bucket = ft_isqrt(a->size) / 2;
-	bucket_size = a->size / nbr_bucket + 1;
-	if (normalize(a))
-		return ;
-	k = 0;
-	done = 0;
-	while (a->size && k < nbr_bucket)
-	{
-		i = 0;
-		while (i < a->size)
-		{
-			if (a->stack[i] >= k * bucket_size
-				&& a->stack[i] < (k + 1) * bucket_size)
-			{
-				tmp = i;
-				dir = 0;
-				break ;
-			}
-			i++;
-		}
-		i = a->size - 1;
-		while (i >= 0 && (size_t) tmp > a->size - i)
-		{
-			if (a->stack[i] >= k * bucket_size
-				&& a->stack[i] < (k + 1) * bucket_size)
-			{
-				tmp = a->size - i;
-				dir = 1;
-				break ;
-			}
-			i--;
-		}
-		while (tmp--)
-			universal_rotate(*a, dir, op_nbr);
-		push(a, b, 1, op_nbr);
-		done++;
-		if (done >= bucket_size)
-		{
-			done = 0;
-			k++;
-		}
-	}
 	while (b->size)
 	{
 		tmp = count_to_top(*b, find_max(*b), &dir);
@@ -85,4 +83,30 @@ void	medium_sort(t_stack *a, t_stack *b, int *op_nbr)
 			universal_rotate(*b, dir, op_nbr);
 		push(b, a, 1, op_nbr);
 	}
+}
+
+void	medium_sort(t_stack *a, t_stack *b, int *op_nbr)
+{
+	int	bucket_size;
+	int	k;
+	int	tmp;
+	int	dir;
+	int	done;
+
+	bucket_size = a->size / (ft_isqrt(a->size) / 2) + 1;
+	if (normalize(a))
+		return ;
+	k = 0;
+	done = 0;
+	while (a->size)
+	{
+		tmp = find_best(a, bucket_size, k, &dir);
+		while (tmp--)
+			universal_rotate(*a, dir, op_nbr);
+		push(a, b, 1, op_nbr);
+		done++;
+		if (!(done % bucket_size))
+			k++;
+	}
+	push_to_b(a, b, op_nbr);
 }

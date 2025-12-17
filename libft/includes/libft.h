@@ -6,7 +6,7 @@
 /*   By: relaforg <relaforg@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:45:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/16 13:48:43 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:27:36 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,8 @@ enum	e_errcode
 };
 
 char	*get_next_line(int fd);
+
+// --- math ---
+int	ft_isqrt(int n);
 
 #endif

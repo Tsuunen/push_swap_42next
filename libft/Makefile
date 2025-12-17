@@ -4,7 +4,7 @@ CFLAGS := -Werror -Wextra -Wall -MD $(INCLUDES)
 NAME := libft.a
 BUILD_DIR := .build
 
-VPATH := srcs/gnl:srcs/is:srcs/lst:srcs/mem:srcs/print:srcs/str:srcs/to
+VPATH := srcs/gnl:srcs/is:srcs/lst:srcs/mem:srcs/print:srcs/str:srcs/to:srcs/math
 SRCS := ft_isalpha.c\
 	   ft_isdigit.c\
 	   ft_isalnum.c\
@@ -68,7 +68,8 @@ SRCS := ft_isalpha.c\
 	   ft_strtoi.c\
 	   ft_toabs.c\
 	   get_next_line.c\
-	   ft_dprintf.c
+	   ft_dprintf.c\
+	   ft_isqrt.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
