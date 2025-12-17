@@ -26,7 +26,7 @@ SRCS = main.c\
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
 
-CHECKER_SRCS = checker.c\
+CHECKER_SRCS = checker_bonus.c\
 			   parser.c\
 			   stack_operations.c\
 			   stack_operations_utils.c\
