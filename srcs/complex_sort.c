@@ -29,28 +29,28 @@ static int	has_bitdiff(t_stack *s, int bit)
 
 int	normalize(t_stack *s)
 {
-	int		*new;
-	size_t	i;
-	size_t	j;
-	int		min;
+	int	*normalized;
+	int	i;
+	int	j;
+	int	count;
 
-	new = ft_calloc(s->size, sizeof(int));
-	if (!new)
+	if (s->size <= 1)
 		return (1);
-	i = 0;
-	while (i < s->size)
+	normalized = ft_calloc(sizeof(int), s->size);
+	if (!normalized)
+		return ;
+	i = -1;
+	while (++i < (int)s->size)
 	{
-		j = 0;
-		min = 0;
-		while (j < s->size)
-			if (s->stack[j++] < s->stack[min])
-				min = j - 1;
-		new[min] = i;
-		s->stack[min] = INT_MAX;
-		i++;
+		count = 0;
+		j = -1;
+		while (++j < (int)s->size)
+			if (s->stack[j] < s->stack[i])
+				count++;
+		normalized[i] = count;
 	}
 	free(s->stack);
-	s->stack = new;
+	s->stack = normalized;
 	return (0);
 }
 

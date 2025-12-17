@@ -26,7 +26,7 @@ make bonus
 You can now pipe or write your solution to the standard input
 
 # Ressources
- - Various Geeks for Geeks article to understand the different algorithms
+ - Various Geeks for Geeks & Wikipedia article to understand the different algorithms
  - ChatGPT to explain the left over questions on the algorithms
  - ChatGPT to try debugging code without much success if none
 
